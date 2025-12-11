@@ -1,0 +1,123 @@
+/**
+ * WP-PageNavi Custom Styles
+ * Dark theme styling for pagination plugin
+ */
+
+.wp-pagenavi-wrapper {
+    margin-top: 4rem;
+    display: flex;
+    justify-content: center;
+}
+
+.wp-pagenavi {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    clear: both;
+}
+
+/* Page numbers and navigation buttons */
+.wp-pagenavi a,
+.wp-pagenavi span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+/* Regular page links */
+.wp-pagenavi a.page,
+.wp-pagenavi a.previouspostslink,
+.wp-pagenavi a.nextpostslink,
+.wp-pagenavi a.first,
+.wp-pagenavi a.last {
+    background-color: rgb(24 24 27);
+    /* zinc-900 */
+    border: 1px solid rgb(39 39 42);
+    /* zinc-800 */
+    color: rgb(161 161 170);
+    /* zinc-400 */
+}
+
+.wp-pagenavi a.page:hover,
+.wp-pagenavi a.previouspostslink:hover,
+.wp-pagenavi a.nextpostslink:hover,
+.wp-pagenavi a.first:hover,
+.wp-pagenavi a.last:hover {
+    color: rgb(255 255 255);
+    border-color: rgb(63 63 70);
+    /* zinc-700 */
+}
+
+/* Current page */
+.wp-pagenavi span.current {
+    background-color: #EAB308;
+    /* brand-500 */
+    color: #000000;
+    font-weight: 700;
+    border: 1px solid #EAB308;
+}
+
+/* Extend (dots ...) */
+.wp-pagenavi span.extend {
+    background-color: rgb(24 24 27);
+    /* zinc-900 */
+    border: 1px solid rgb(39 39 42);
+    /* zinc-800 */
+    color: rgb(161 161 170);
+    /* zinc-400 */
+    cursor: default;
+}
+
+/* Pages info text (optional, can hide if not needed) */
+.wp-pagenavi .pages {
+    color: rgb(113 113 122);
+    /* zinc-500 */
+    font-size: 0.875rem;
+    padding: 0 0.5rem;
+    display: none;
+    /* Hide by default */
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+
+    .wp-pagenavi a,
+    .wp-pagenavi span {
+        width: 2rem;
+        height: 2rem;
+        font-size: 0.75rem;
+    }
+
+    .wp-pagenavi {
+        gap: 0.25rem;
+    }
+
+    /* Hide first/last on mobile */
+    .wp-pagenavi a.first,
+    .wp-pagenavi a.last {
+        display: none;
+    }
+
+    /* Show only few pages on mobile */
+    .wp-pagenavi a.page:nth-child(n+6):nth-last-child(n+4) {
+        display: none;
+    }
+}
+
+/* Focus states for accessibility */
+.wp-pagenavi a:focus {
+    outline: 2px solid #EAB308;
+    outline-offset: 2px;
+}
+
+/* Loading animation (optional) */
+.wp-pagenavi a:active {
+    transform: scale(0.95);
+}
