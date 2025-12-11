@@ -59,6 +59,29 @@ function goldenbee_add_functions()
     add_action('genesis_footer', 'goldenbee_footer_components');
 }
 
+// Enqueue custom styles
+add_action('wp_enqueue_scripts', 'goldenbee_enqueue_styles');
+function goldenbee_enqueue_styles()
+{
+    // WP-PageNavi custom styles
+    wp_enqueue_style(
+        'goldenbee-pagenavi',
+        get_stylesheet_directory_uri() . '/src/assets/css/wp-pagenavi.css',
+        array(),
+        '1.0.0'
+    );
+}
+
+// Modify archive query for custom posts per page
+add_action('pre_get_posts', 'goldenbee_modify_archive_query');
+function goldenbee_modify_archive_query($query)
+{
+    // Only modify main query on category/tag archives, not admin
+    if (!is_admin() && $query->is_main_query() && (is_category() || is_tag())) {
+        $query->set('posts_per_page', 6);
+    }
+}
+
 function goldenbee_header_components()
 {
     Header::render();
@@ -75,7 +98,9 @@ function goldenbee_single_components()
 {
     if (is_single()) {
         if (class_exists('WooCommerce') && is_woocommerce()) {
+            SingleProduct::render();
         } else {
+            Single::render();
         }
     }
 }
@@ -83,6 +108,11 @@ function goldenbee_single_components()
 function goldenbee_page_components()
 {
     if (is_page() && !is_page_template()) {
+        if (is_page('tin-tuc')) {
+            Archive::render();
+        } else {
+            Page::render();
+        }
     }
 }
 
@@ -91,6 +121,7 @@ function goldenbee_archive_components()
     if (is_archive()) {
         if (class_exists('WooCommerce') && is_woocommerce()) {
         } else {
+            Archive::render();
         }
     }
 }
@@ -367,3 +398,130 @@ function goldenbee_custom_body_classes($classes)
     return $classes;
 }
 add_filter('body_class', 'goldenbee_custom_body_classes');
+
+/**
+ * Customize Breadcrumb NavXT output styling
+ */
+function goldenbee_breadcrumb_navxt_settings()
+{
+    if (!function_exists('bcn_display')) {
+        return;
+    }
+
+
+    // Custom separator with SVG
+    add_filter('bcn_breadcrumb_separator', function ($separator) {
+        return '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="flex-shrink-0"><polyline points="9 18 15 12 9 6"></polyline></svg>';
+    });
+
+    // Template for linked items
+    add_filter('bcn_breadcrumb_template', function ($template, $types, $id) {
+        $is_current = is_array($types) && in_array('current-item', $types);
+
+        if ($is_current) {
+            // Current item - bold text without link
+            return '<span property="itemListElement" typeof="ListItem"><span property="name" class="text-zinc-300 font-bold">%htitle%</span><meta property="position" content="%position%"></span>';
+        } else {
+            // Regular linked items
+            return '<span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage" href="%link%" class="hover:text-brand-500 cursor-pointer transition-colors"><span property="name">%htitle%</span></a><meta property="url" content="%link%"><meta property="position" content="%position%"></span>';
+        }
+    }, 10, 3);
+
+    // Template for non-anchor items
+    add_filter('bcn_breadcrumb_template_no_anchor', function ($template, $types, $id) {
+        return '<span property="itemListElement" typeof="ListItem"><span property="name" class="text-zinc-300 font-bold">%htitle%</span><meta property="position" content="%position%"></span>';
+    }, 10, 3);
+}
+add_action('init', 'goldenbee_breadcrumb_navxt_settings');
+
+/**
+ * Get WP ULike count without default HTML
+ * Chỉ lấy số lượng like, không render HTML của plugin
+ */
+function goldenbee_get_like_count($post_id = null)
+{
+    if (!$post_id) {
+        $post_id = get_the_ID();
+    }
+
+    if (function_exists('wp_ulike_get_post_likes')) {
+        $likes = wp_ulike_get_post_likes($post_id);
+        return $likes ? $likes : 0;
+    }
+
+    return 0;
+}
+
+/**
+ * Check if current user has liked the post
+ */
+function goldenbee_is_post_liked($post_id = null)
+{
+    if (!$post_id) {
+        $post_id = get_the_ID();
+    }
+
+    // Check using WP ULike's internal function
+    if (class_exists('wp_ulike_ajax_listener')) {
+        global $wpdb;
+        $user_id = get_current_user_id();
+        $table = $wpdb->prefix . 'ulike';
+
+        if ($user_id) {
+            // Check for logged in users
+            $check = $wpdb->get_var($wpdb->prepare(
+                "SELECT COUNT(*) FROM {$table} WHERE post_id = %d AND user_id = %d AND status = 'like'",
+                $post_id,
+                $user_id
+            ));
+        } else {
+            // Check for guests using IP
+            $user_ip = wp_ulike_get_user_ip();
+            $check = $wpdb->get_var($wpdb->prepare(
+                "SELECT COUNT(*) FROM {$table} WHERE post_id = %d AND ip = %s AND status = 'like'",
+                $post_id,
+                $user_ip
+            ));
+        }
+
+        return $check > 0;
+    }
+
+    return false;
+}
+
+/**
+ * Get like button data attributes for AJAX
+ */
+function goldenbee_get_like_button_attrs($post_id = null)
+{
+    if (!$post_id) {
+        $post_id = get_the_ID();
+    }
+
+    $nonce = wp_create_nonce('wp_ulike_nonce');
+
+    return [
+        'data-ulike-id' => $post_id,
+        'data-ulike-nonce' => $nonce,
+        'data-ulike-type' => 'post',
+        'data-ulike-status' => goldenbee_is_post_liked($post_id) ? 'liked' : 'unliked'
+    ];
+}
+
+/**
+ * Enqueue WP ULike scripts for custom like button
+ */
+function goldenbee_enqueue_wpulike_scripts()
+{
+    if (is_single() && function_exists('wp_ulike_get_setting')) {
+        // Enqueue WP ULike core scripts
+        wp_enqueue_script('wp_ulike');
+
+        // Add AJAX URL for custom button
+        wp_localize_script('wp_ulike', 'wp_ulike_params', [
+            'ajax_url' => admin_url('admin-ajax.php'),
+        ]);
+    }
+}
+add_action('wp_enqueue_scripts', 'goldenbee_enqueue_wpulike_scripts');
