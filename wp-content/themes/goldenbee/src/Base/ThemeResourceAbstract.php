@@ -26,6 +26,11 @@ abstract class ThemeResourceAbstract
         if (wp_is_mobile() && has_nav_menu('primary_menu')) {
             wp_enqueue_style('mmenu', self::$template_directory_uri . '/vendor/mmenu-js-master/dist/mmenu.css', [], '2.3');
         }
+
+        // Enqueue article detail styles for single posts (not products)
+        if (is_single() && !is_singular('product')) {
+            wp_enqueue_style('article-detail', self::$template_directory_uri . '/css/article-detail.css', [], '1.0.0');
+        }
     }
 
     /**
