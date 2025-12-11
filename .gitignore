@@ -1,0 +1,22 @@
+# WordPress Core
+wp-config.php
+
+# Plugins (except custom plugins)
+wp-content/plugins/wp-ulike/
+
+# Uploads
+wp-content/uploads/
+
+# Advanced cache
+wp-content/advanced-cache.php
+
+# LiteSpeed Cache
+wp-content/litespeed/
+
+# IDE
+.vscode/
+.idea/
+
+# OS Files
+.DS_Store
+Thumbs.db
