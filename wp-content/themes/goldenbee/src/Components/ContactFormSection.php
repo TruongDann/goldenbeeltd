@@ -17,7 +17,7 @@ class ContactFormSection implements ThemeComponentInterface
         $services = ['Website', 'Mobile App', 'Phần mềm', 'SEO/Ads'];
 ?>
 
-        <section id="contact" class="py-24 bg-zinc-950 relative border-t border-zinc-800 overflow-hidden">
+        <section id="contact" class="py-24 relative border-t border-zinc-800 overflow-hidden">
             <!-- Simple Background Ambience -->
             <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-500/5 rounded-full blur-[100px] pointer-events-none"></div>
             <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[100px] pointer-events-none"></div>

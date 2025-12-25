@@ -37,7 +37,7 @@ class WhyChooseUs implements ThemeComponentInterface
 		];
 ?>
 
-		<section class="py-24 bg-zinc-950 relative border-t border-zinc-800 overflow-hidden">
+		<section class="py-24 relative border-t border-zinc-800 overflow-hidden">
 			<div class="container relative z-10">
 				<!-- Header Content -->
 				<div class="text-center mb-16">

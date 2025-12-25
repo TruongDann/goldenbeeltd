@@ -42,10 +42,7 @@ class ProcessSection implements ThemeComponentInterface
         ];
 ?>
 
-        <section class="py-24 bg-zinc-950 relative border-t border-zinc-800 overflow-hidden">
-            <!-- Background Decor -->
-            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-brand-500/5 rounded-full blur-[120px] pointer-events-none"></div>
-
+        <section class="py-24 relative border-t border-zinc-800 overflow-hidden">
             <div class="container relative z-10">
                 <div class="text-center max-w-3xl mx-auto mb-20" data-aos="fade-up">
                     <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">
@@ -58,7 +55,7 @@ class ProcessSection implements ThemeComponentInterface
 
                 <div class="relative">
                     <!-- Connecting Circuit Line (Desktop) -->
-                    <div class="hidden lg:block absolute top-12 left-0 right-0 h-0.5 bg-gradient-to-r from-zinc-800 via-brand-500/50 to-zinc-800 -z-10 opacity-50">
+                    <div class="hidden lg:block absolute top-12 left-0 right-0 h-0.5 bg-gradient-to-r from-zinc-800 via-brand-500 to-zinc-800 -z-10 opacity-50">
                         <!-- Moving dot animation -->
                         <div class="absolute top-1/2 -translate-y-1/2 left-0 w-20 h-1 bg-gradient-to-r from-transparent via-brand-400 to-transparent animate-shimmer"></div>
                     </div>

@@ -44,7 +44,7 @@ class Portfolio implements ThemeComponentInterface
         ];
 ?>
 
-        <section id="portfolio" class="py-24 bg-zinc-950 relative border-t border-zinc-800 overflow-hidden">
+        <section id="portfolio" class="py-24 relative border-t border-zinc-800 overflow-hidden">
             <div class="container">
                 <!-- Section Header -->
                 <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6" data-aos="fade-up">

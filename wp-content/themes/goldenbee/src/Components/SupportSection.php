@@ -36,7 +36,7 @@ class SupportSection implements ThemeComponentInterface
         ];
 ?>
 
-        <section class="py-24 bg-zinc-950 relative overflow-hidden border-t border-zinc-800">
+        <section class="py-24 relative overflow-hidden border-t border-zinc-800">
             <div class="container relative z-10">
 
                 <!-- Header Section - Moved above the grid -->

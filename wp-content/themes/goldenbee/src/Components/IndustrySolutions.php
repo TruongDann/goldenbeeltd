@@ -62,7 +62,7 @@ class IndustrySolutions implements ThemeComponentInterface
         ];
 ?>
 
-        <section class="py-24 bg-zinc-950 relative border-t border-zinc-800">
+        <section class="py-24 relative border-t border-zinc-800">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Phần trên: 1 text + 4 card -->
                 <div class="flex flex-col lg:flex-row gap-4 sm:gap-5 md:gap-6 mb-4 sm:mb-5 md:mb-6" data-aos="fade-up">

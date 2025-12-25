@@ -36,7 +36,7 @@ class GoldenBeeFeatures implements ThemeComponentInterface
         ];
 ?>
 
-        <section class="py-24 bg-zinc-950 relative border-t border-zinc-800 overflow-hidden">
+        <section class="py-24 relative border-t border-zinc-800 overflow-hidden">
             <!-- Background Decor -->
             <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:40px_40px] opacity-20 pointer-events-none"></div>
             <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-500/5 rounded-full blur-[120px] pointer-events-none"></div>

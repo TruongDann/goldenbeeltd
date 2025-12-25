@@ -57,7 +57,7 @@ class NewsSection implements ThemeComponentInterface
         $side_articles = array_slice($news_data, 2, 3);
 ?>
 
-        <section class="py-24 bg-zinc-950 border-t border-zinc-800 relative">
+        <section class="py-24 border-t border-zinc-800 relative">
             <div class="container relative z-10">
 
                 <!-- Section Header -->

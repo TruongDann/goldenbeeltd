@@ -56,7 +56,7 @@ class TemplateGallery implements ThemeComponentInterface
         ];
 ?>
 
-        <section class="py-24 bg-zinc-950 relative border-t border-zinc-800 overflow-hidden">
+        <section class="py-24 relative border-t border-zinc-800 overflow-hidden">
             <div class="container relative z-10">
                 <!-- Header -->
                 <div class="text-center max-w-3xl mx-auto mb-12" data-aos="fade-up">

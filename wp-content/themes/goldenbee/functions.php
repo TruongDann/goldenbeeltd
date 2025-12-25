@@ -183,6 +183,10 @@ function custom_tailwind_theme_style_to_head()
             padding: 0;
             opacity: 1;
             visibility: visible;
+            background-color: #10101c;
+        }
+        main {
+            overflow: hidden;
         }
         
         /* Ngăn FOUC cho các element chính */
@@ -349,6 +353,8 @@ function custom_tailwind_theme_style_to_head()
             }
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
 <?php
 }
 add_action('wp_head', 'custom_tailwind_theme_style_to_head');
