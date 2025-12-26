@@ -3,6 +3,8 @@ wp-config.php
 
 # Plugins (except custom plugins)
 wp-content/plugins/wp-ulike/
+wp-content/plugins/sms-otp-verification/
+wp-content/plugins/bp-firebase-otp/
 
 # Uploads
 wp-content/uploads/
