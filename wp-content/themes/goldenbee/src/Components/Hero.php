@@ -32,17 +32,20 @@ class Hero implements ThemeComponentInterface
                     <span class="text-zinc-300 text-xs md:text-sm font-mono tracking-wide">CÓ SẴN CHO CÁC DỰ ÁN MỚI</span>
                 </div>
 
-                <h1 class="drop-shadow-glowWhite text-5xl leading-none md:text-7xl lg:text-8xl font-bold tracking-tighter text-white mb-4" data-aos="fade-up" data-aos-delay="150">
+                <div class="mb-8">
+                    <h1 class="drop-shadow-glowWhite text-5xl leading-none md:text-7xl lg:text-8xl font-bold tracking-tighter text-white mb-4" data-aos="fade-up" data-aos-delay="150">
                     XÂY DỰNG <br />
                 </h1>
-                <span class="mb-8 text-transparent tracking-wide text-5xl bg-clip-text bg-gradient-to-r from-brand-400 to-amber-600 md:text-7xl lg:text-8xl font-bold leading-none" data-aos="fade-up" data-aos-delay="100">
+                <span class="text-transparent tracking-wide text-5xl bg-clip-text bg-gradient-to-r from-brand-400 to-amber-600 md:text-7xl lg:text-8xl font-bold leading-none" data-aos="fade-up" data-aos-delay="100">
                     TƯƠNG LAI SỐ
                 </span>
+                </div>
 
-                <p class="text-zinc-300 text-lg md:text-xl max-w-2xl leading-relaxed mb-10 font-thin" data-aos="fade-up" data-aos-delay="200">
+                <p class="text-zinc-400 text-lg md:text-xl max-w-2xl leading-relaxed mb-10 font-light" data-aos="fade-up" data-aos-delay="200">
                     Biến ý tưởng thành hiện thực với công nghệ Web, Mobile App và AI tiên tiến nhất.
-                    Không chỉ là Code, chúng tôi kiến tạo và trải nghiệm mang đến số độc bản cho doanh nghiệp của bạn.
+                    Không chỉ là Code, chúng tôi kiến tạo trải nghiệm số độc bản cho doanh nghiệp của bạn.
                 </p>
+
 
                 <div class="flex flex-col sm:flex-row gap-4" data-aos="fade-up" data-aos-delay="300">
                     <a href="#contact" class="group px-8 py-4 bg-brand-500 hover:bg-brand-400 text-black font-bold text-lg rounded-full transition-all flex items-center justify-center gap-2">
